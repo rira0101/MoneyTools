@@ -109,7 +109,7 @@ export default function RefinanceSimulation() {
           <Link href="/loan_simulation" className="text-blue-500 underline">
             「借入登録・シミュレーション」
           </Link>
-          を未実施の方は先に実施をしてください
+          を未実施の方は先に実施をしてください。
         </p>
       </div>
 
