@@ -9,6 +9,7 @@ import LoanTable from "./LoanTable";
 import RefinanceResult from "./refinanceResult";
 import { calculateRepayment } from "../logic/calculateRepayment";
 import TotalRepaymentInfo from "../loan_simulation/TotalRepaymentInfo";
+import { Button } from "@/components/ui/button";
 export default function RefinanceSimulation() {
   const loanList = (): LoanInfo[] => {
     const savedLoanList = localStorage.getItem("loanList");
@@ -130,20 +131,19 @@ export default function RefinanceSimulation() {
             />
           </div>
           <div className="flex justify-around">
-            <button
-              type="button"
+            <Button
+              className="bg-blue-500  hover:bg-blue-700 w-36"
               onClick={executeCalc}
-              className="w-40 bg-green-500 text-white py-3 px-6 rounded mt-10"
             >
               計算
-            </button>
-            <button
-              type="button"
+            </Button>
+            <Button
+              className="w-36  hover:bg-red-600"
+              variant="destructive"
               onClick={resetLoanInfo}
-              className="w-40 bg-red-500 text-white py-3 px-6 rounded mt-10"
             >
               リセット
-            </button>
+            </Button>
           </div>
           <RefinanceResult
             loanList={loans}
