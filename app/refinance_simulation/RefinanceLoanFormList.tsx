@@ -1,4 +1,5 @@
 // LoanFormList.tsx
+import { Button } from "@/components/ui/button";
 import { LoanForm } from "../component/LoanForm";
 import { LoanInfo } from "../types/LoanInfo";
 import { formatNumberWithCommas } from "../util/formatNumberWithCommas";
@@ -39,7 +40,7 @@ const RefinanceFormList: React.FC<RefinanceFormListProps> = ({
       {refinanceLoanList.map((loan, index) => (
         <div
           key={index}
-          className="p-4 max-w-lg mx-auto bg-gray-100 rounded shadow mt-2 mt-4"
+          className="p-4 max-w-lg mx-auto bg-gray-100 rounded shadow mt-4 mb-6"
         >
           <LoanForm
             index={index}
@@ -62,23 +63,21 @@ const RefinanceFormList: React.FC<RefinanceFormListProps> = ({
               </p>
             </div>
           )}
-          <button
-            type="button"
+          <Button
+            className="bg-blue-500 hover:bg-blue-700"
             onClick={() => deleteLoan(index)}
-            className="bg-blue-500 text-white py-1 px-3 rounded"
           >
             削除
-          </button>
+          </Button>
         </div>
       ))}
       <div className="flex justify-center">
-        <button
-          type="button"
+        <Button
+          className="bg-blue-500 hover:bg-blue-700"
           onClick={handleAddLoan}
-          className="bg-blue-500 text-white py-2 px-4 rounded mt-6"
         >
           ローンを追加
-        </button>
+        </Button>
       </div>
     </div>
   );

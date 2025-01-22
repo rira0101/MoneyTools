@@ -1,4 +1,5 @@
 // LoanFormList.tsx
+import { Button } from "@/components/ui/button";
 import { LoanForm } from "../component/LoanForm";
 import { LoanInfo } from "../types/LoanInfo";
 import { formatNumberWithCommas } from "../util/formatNumberWithCommas";
@@ -22,13 +23,10 @@ const LoanFormList: React.FC<LoanFormListProps> = ({
 }) => {
   return (
     <div>
-      <p className="text-xl">
-        ローン情報を登録してください（カードローン除く）
-      </p>
       {loanList.map((loan, index) => (
         <div
           key={index}
-          className="p-4 max-w-lg mx-auto bg-gray-100 rounded shadow mt-2 mb-6"
+          className="p-3 max-w-lg mx-auto bg-gray-100 rounded shadow mt-2 mb-6"
         >
           <LoanForm
             index={index}
@@ -36,7 +34,7 @@ const LoanFormList: React.FC<LoanFormListProps> = ({
             handleChange={loanFormChange}
           />
           {loan.repayment !== null && (
-            <div className="mt-4 text-green-500 font-bold">
+            <div className="mt-4 text-green-500 font-bold mb-4">
               <p>
                 毎月返済額:{" "}
                 {formatNumberWithCommas(loan.repayment.monthlyRepayment)} 円
@@ -51,23 +49,21 @@ const LoanFormList: React.FC<LoanFormListProps> = ({
               </p>
             </div>
           )}
-          <button
-            type="button"
+          <Button
+            className="bg-blue-500 hover:bg-blue-700"
             onClick={() => deleteLoan("loan", index)}
-            className="bg-blue-500 text-white py-1 px-3 rounded"
           >
             削除
-          </button>
+          </Button>
         </div>
       ))}
       <div className="flex justify-center">
-        <button
-          type="button"
+        <Button
+          className="bg-blue-500 hover:bg-blue-700"
           onClick={handleAddLoan}
-          className="bg-blue-500 text-white py-2 px-4 rounded"
         >
           ローンを追加
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -9,6 +9,13 @@ import CardLoanFormList from "./CardLoanFormList";
 import LoanFormList from "./LoanFormList";
 import TotalRepaymentInfo from "./TotalRepaymentInfo";
 import Link from "next/link";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 
 export default function LoanSimulation() {
   const [loanList, setLoanList] = useState<LoanInfo[]>(() => {
@@ -20,6 +27,11 @@ export default function LoanSimulation() {
     const savedCardLoanList = localStorage.getItem("cardLoanList");
     return savedCardLoanList ? JSON.parse(savedCardLoanList) : [];
   });
+
+  const [openItemList, setOpenItemList] = useState<string[]>([
+    "item-1",
+    "item-2",
+  ]);
 
   const handleAddLoan = () => {
     setLoanList((prevList) => [
@@ -111,40 +123,64 @@ export default function LoanSimulation() {
     );
   };
 
+  const changeAccordionOpen = (item: string): string[] => {
+    // 既に開いている場合は閉じる
+    const isOpen = openItemList.includes(item);
+    const updatedItemList = isOpen
+      ? openItemList.filter((openItem) => openItem !== item) // 押下されたアイテムを削除
+      : [...openItemList, item]; // 新たに押下されたアイテムを追加
+    setOpenItemList(updatedItemList); // 状態を更新
+    return updatedItemList; // 更新後のリストを返却
+  };
+
   return (
     <div className="mb-10">
       <HeaderArea />
       <div className="flex justify-center">
         <div className="loan-simulation">
           <h1 className="text-2xl font-bold mb-4">借入シミュレーション</h1>
-
-          <LoanFormList
-            loanList={loanList}
-            loanFormChange={loanFormChange}
-            deleteLoan={deleteLoan}
-            handleAddLoan={handleAddLoan}
-          />
-          <CardLoanFormList
-            cardLoanList={cardLoanList}
-            cardLoanFormChange={cardLoanFormChange}
-            deleteLoan={deleteLoan}
-            handleAddCardLoan={handleAddCardLoan}
-          />
+          <Accordion type="multiple" className="w-full" value={openItemList}>
+            <AccordionItem value="item-1" className="mb-6 bg-gray-200 p-3">
+              <AccordionTrigger onClick={() => changeAccordionOpen("item-1")}>
+                ローン情報を登録してください（カードローン除く）
+              </AccordionTrigger>
+              <AccordionContent>
+                <LoanFormList
+                  loanList={loanList}
+                  loanFormChange={loanFormChange}
+                  deleteLoan={deleteLoan}
+                  handleAddLoan={handleAddLoan}
+                />
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2" className="mb-6 bg-gray-200 p-3">
+              <AccordionTrigger onClick={() => changeAccordionOpen("item-2")}>
+                カードローン情報を登録してください
+              </AccordionTrigger>
+              <AccordionContent>
+                <CardLoanFormList
+                  cardLoanList={cardLoanList}
+                  cardLoanFormChange={cardLoanFormChange}
+                  deleteLoan={deleteLoan}
+                  handleAddCardLoan={handleAddCardLoan}
+                />
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
           <div className="flex justify-around">
-            <button
-              type="button"
+            <Button
+              className="bg-blue-500 hover:bg-blue-700 w-36"
               onClick={executeCalc}
-              className="w-40 bg-green-500 text-white py-3 px-6 rounded mt-10"
             >
               計算
-            </button>
-            <button
-              type="button"
+            </Button>
+            <Button
+              className="w-36 hover:bg-red-600"
+              variant="destructive"
               onClick={resetLoanInfo}
-              className="w-40 bg-red-500 text-white py-3 px-6 rounded mt-10"
             >
               リセット
-            </button>
+            </Button>
           </div>
           <TotalRepaymentInfo loanList={loanList} cardLoanList={cardLoanList} />
           <div className="mt-6">

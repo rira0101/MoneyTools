@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { CardLoanForm } from "../component/CardLoanForm";
 import { CardLoanInfo } from "../types/CardLoanInfo";
 import { formatRepaymentPeriod } from "../util/formatMonthsAsYearsAndMonths";
@@ -22,7 +23,6 @@ const CardLoanFormList: React.FC<CardLoanFormListProps> = ({
 }) => {
   return (
     <div>
-      <p className="text-xl">カードローン情報を登録してください</p>
       {cardLoanList.map((loan, index) => (
         <div
           key={index}
@@ -34,7 +34,7 @@ const CardLoanFormList: React.FC<CardLoanFormListProps> = ({
             handleChange={cardLoanFormChange}
           />
           {loan.repayment !== null && (
-            <div className="mt-4 text-green-500 font-bold">
+            <div className="mt-4 text-green-500 font-bold mb-4">
               <p>
                 返済期間:{" "}
                 {formatRepaymentPeriod(loan.repayment.repaymentPeriod)}
@@ -49,23 +49,21 @@ const CardLoanFormList: React.FC<CardLoanFormListProps> = ({
               </p>
             </div>
           )}
-          <button
-            type="button"
+          <Button
+            className="bg-blue-500 hover:bg-blue-700"
             onClick={() => deleteLoan("cardLoan", index)}
-            className="bg-blue-500 text-white py-1 px-3 rounded"
           >
             削除
-          </button>
+          </Button>
         </div>
       ))}
       <div className="flex justify-center">
-        <button
-          type="button"
-          onClick={handleAddCardLoan}
-          className="bg-blue-500 text-white py-2 px-4 rounded"
+        <Button
+          className="bg-blue-500 hover:bg-blue-700"
+          onClick={() => handleAddCardLoan}
         >
-          カードローンを追加
-        </button>
+          ローンを追加
+        </Button>
       </div>
     </div>
   );
