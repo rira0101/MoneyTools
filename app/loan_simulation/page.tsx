@@ -2,9 +2,9 @@
 import { useState } from "react";
 import HeaderArea from "../component/HeaderArea";
 import { LoanInfo } from "../types/LoanInfo";
-import { calculateRepayment } from "../logic/calculateRepayment";
+import { calculateRepayment } from "../logic/loan/calculateRepayment";
 import { CardLoanInfo } from "../types/CardLoanInfo";
-import { calculateCardLoanRepayment } from "../logic/calculateCardLoanRepayment";
+import { calculateCardLoanRepayment } from "../logic/loan/calculateCardLoanRepayment";
 import CardLoanFormList from "./CardLoanFormList";
 import LoanFormList from "./LoanFormList";
 import TotalRepaymentInfo from "./TotalRepaymentInfo";

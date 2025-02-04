@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { CardLoanForm } from "../component/CardLoanForm";
 import { CardLoanInfo } from "../types/CardLoanInfo";
-import { formatRepaymentPeriod } from "../util/formatMonthsAsYearsAndMonths";
+import { formatMonthsToYearAndMonths } from "../util/formatMonthsToYearAndMonths";
 import { formatNumberWithCommas } from "../util/formatNumberWithCommas";
 
 interface CardLoanFormListProps {
@@ -37,7 +37,7 @@ const CardLoanFormList: React.FC<CardLoanFormListProps> = ({
             <div className="mt-4 text-green-500 font-bold mb-4">
               <p>
                 返済期間:{" "}
-                {formatRepaymentPeriod(loan.repayment.repaymentPeriod)}
+                {formatMonthsToYearAndMonths(loan.repayment.repaymentPeriod)}
               </p>
               <p>
                 総返済利息:{" "}
