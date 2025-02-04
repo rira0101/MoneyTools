@@ -9,7 +9,6 @@ interface LoanFormProps {
     field: keyof LoanInfo,
     value: number | string
   ) => void;
-  remainingAmount?: number | null;
 }
 
 export const LoanForm: React.FC<LoanFormProps> = ({

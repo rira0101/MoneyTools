@@ -1,5 +1,6 @@
-import { CardLoanInfo } from "../types/CardLoanInfo";
-import { RepaymentCardLoan } from "../types/Repayment";
+import { CardLoanInfo } from "@/app/types/CardLoanInfo";
+import { RepaymentCardLoan } from "@/app/types/Repayment";
+
 
 export const calculateCardLoanRepayment =(
     formInfo:CardLoanInfo

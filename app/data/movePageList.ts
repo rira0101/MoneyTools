@@ -3,7 +3,7 @@ import { NavigationCategory, NavigationType } from "../types/navigation";
 export const categoryList: NavigationCategory[] = [
     { category: "home", text: "ホーム"},
     { category: "loan", text: "お金を借りる" },
-    { category: "investment", text: "お金を増やす" },
+    { category: "assetManagement", text: "お金を増やす" },
     { category: "other", text: "その他" },
   ]
 
@@ -34,19 +34,19 @@ export const pageList:NavigationType[] =
         text: "住宅ローン借り換えシミュレーション",
         path: "/mortgage_refinance_simulation"
     },{
-        category: "investment",
+        category: "assetManagement",
         text: "資産運用について",
         path: "/about_increase_money"
     },{
-        category: "investment",
+        category: "assetManagement",
         text: "積立投資のすゝめ",
         path: "/recommend_reserve_investment_trust"
     },{
-        category: "investment",
+        category: "assetManagement",
         text: "投資シミュレーション",
-        path: "/investment_trust_simulation"
+        path: "/investment_simulation"
     },{
-        category: "investment",
+        category: "assetManagement",
         text: "取り崩しシミュレーション",
         path: "/withdrawal_simulation"
     },{

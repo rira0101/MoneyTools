@@ -7,7 +7,7 @@ import Link from "next/link";
 import { CardLoanInfo } from "../types/CardLoanInfo";
 import LoanTable from "./LoanTable";
 import RefinanceResult from "./refinanceResult";
-import { calculateRepayment } from "../logic/calculateRepayment";
+import { calculateRepayment } from "../logic/loan/calculateRepayment";
 import TotalRepaymentInfo from "../loan_simulation/TotalRepaymentInfo";
 import { Button } from "@/components/ui/button";
 export default function RefinanceSimulation() {
